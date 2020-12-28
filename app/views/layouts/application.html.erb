@@ -6,8 +6,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_pack_tag 'application' %>
+    <%= stylesheet_link_tag 'application', media: 'all', data: { turbo_track: "reload" } %>
+    <%= javascript_pack_tag 'application', data: { turbo_track: "reload" } %>
+    <%= yield :head %>
+    <%= turbo_include_tags %>
+    <%= stimulus_include_tags %>
   </head>
 
   <body>

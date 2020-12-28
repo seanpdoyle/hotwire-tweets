@@ -1,4 +1,30 @@
 GIT
+  remote: https://github.com/hotwired/hotwire-rails.git
+  revision: 28d25901c0b0b4492e473478e7e10ca9fc94213e
+  branch: main
+  specs:
+    hotwire-rails (0.1.3)
+      rails (>= 6.0.0)
+      stimulus-rails
+      turbo-rails
+
+GIT
+  remote: https://github.com/hotwired/stimulus-rails.git
+  revision: 7e44ddcb39e1e9a2564733a2b850cf012e2ac819
+  branch: main
+  specs:
+    stimulus-rails (0.2.3)
+      rails (>= 6.0.0)
+
+GIT
+  remote: https://github.com/hotwired/turbo-rails.git
+  revision: a5ab3772b11b122cd88e5c9c04f3be9b40b7f9ae
+  branch: main
+  specs:
+    turbo-rails (0.5.9)
+      rails (>= 6.0.0)
+
+GIT
   remote: https://github.com/rails/rails.git
   revision: adc5eb66f861a98da32f7c682155360d5b9a4a52
   branch: main
@@ -86,7 +112,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/web-console.git
-  revision: 167c2402aed90f4b4934b04a3ef2ed14034e9f1c
+  revision: 5345813cce3219b073a6f7310f2dcb6c6aedb334
   specs:
     web-console (4.1.0)
       actionview (>= 6.0.0)
@@ -113,7 +139,7 @@ GEM
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
     childprocess (3.0.0)
-    concurrent-ruby (1.1.7)
+    concurrent-ruby (1.1.8)
     crass (1.0.6)
     erubi (1.10.0)
     ffi (1.14.2)
@@ -136,19 +162,17 @@ GEM
     method_source (1.0.0)
     mimemagic (0.3.5)
     mini_mime (1.0.2)
-    mini_portile2 (2.4.0)
     minitest (5.14.4)
     msgpack (1.3.3)
-    nio4r (2.5.4)
-    nokogiri (1.10.10)
-      mini_portile2 (~> 2.4.0)
+    nio4r (2.5.5)
+    nokogiri (1.11.1-x86_64-darwin)
+      racc (~> 1.4)
     pg (1.2.3)
     public_suffix (4.0.6)
     puma (5.1.1)
       nio4r (~> 2.0)
+    racc (1.5.2)
     rack (2.2.3)
-    rack-mini-profiler (2.2.1)
-      rack (>= 1.2.0)
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -162,6 +186,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.2.2)
     regexp_parser (1.8.2)
     rubyzip (2.3.0)
     sass-rails (6.0.0)
@@ -213,15 +238,18 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  hotwire-rails!
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
-  rack-mini-profiler (~> 2.0)
   rails!
+  redis (~> 4.0)
   sass-rails (>= 6)
   selenium-webdriver
   spring
+  stimulus-rails!
+  turbo-rails!
   tzinfo-data
   web-console!
   webdrivers
