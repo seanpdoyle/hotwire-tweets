@@ -28,5 +28,12 @@
     <main class="flex flex-col items-center min-h-screen">
       <%= yield %>
     </main>
+
+    <dialog data-controller="dialog" data-action="turbo:frame-load->dialog#showModal">
+      <turbo-frame id="dialog"></turbo-frame>
+      <form method="dialog">
+        <button>Close</button>
+      </form>
+    </dialog>
   </body>
 </html>

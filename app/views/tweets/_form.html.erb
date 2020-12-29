@@ -1,6 +1,6 @@
 <%= form.label :content %>
 <div id="<%= form.field_id(:toolbar) %>"></div>
-<%= form.rich_text_area :content, class: "border border-gray-800 max-w-prose rounded-lg p-2 outline-none focus:ring", toolbar: form.field_id(:toolbar), aria: { describedby: { form.field_id(:content, :errors) => form.object.errors.include?(:content) } } %>
+<%= form.rich_text_area :content, class: "border border-gray-800 max-w-prose rounded-lg p-2 outline-none focus:ring", autofocus: true, toolbar: form.field_id(:toolbar), aria: { describedby: { form.field_id(:content, :errors) => form.object.errors.include?(:content) } } %>
 <%= tag.span(form.object.errors[:content].to_sentence, id: form.field_id(:content, :errors), class: "colspan-2 text-red-500") if form.object.errors.include?(:content) %>
 
 <%= form.button class: "colspan-2 py-2 px-4 bg-black text-white font-semibold rounded-lg shadow-md hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-opacity-75" do %>

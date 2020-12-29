@@ -2,8 +2,7 @@ require "application_system_test_case"
 
 class SignedIn::TweetsTest < ApplicationSystemTestCase
   test "Tweets a message" do
-    sign_in_as :alice
-    click_on "New"
+    sign_in_as(:alice).then { click_on "New" }
     fill_in_rich_text_area "Content", with: "Hello, world."
     click_on "Create Tweet"
 
@@ -34,6 +33,12 @@ class SignedIn::TweetsTest < ApplicationSystemTestCase
 
     click_on("New").then { click_on "Create Tweet" }
 
-    assert_rich_text_area "Content", described_by: "can't be blank"
+    assert_rich_text_area "Content", focused: true, described_by: "can't be blank"
+  end
+
+  test "can dismiss the New Tweet dialog" do
+    sign_in_as(:alice).then { click_on "New" }.then { click_on "Close" }
+
+    assert_no_rich_text_area "Content"
   end
 end

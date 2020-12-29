@@ -25,7 +25,7 @@
       <span class="sr-only">Retweet</span>
     <% end %>
 
-    <%= link_to new_tweet_reply_path(tweet), class: "hidden signed-in:flex items-center text-gray-600 group-embedded:hidden" do %>
+    <%= link_to new_tweet_reply_path(tweet), class: "hidden signed-in:flex items-center text-gray-600 group-embedded:hidden", data: { turbo_frame: "dialog" } do %>
       <svg role="presentation" class="w-4 h-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
       </svg>

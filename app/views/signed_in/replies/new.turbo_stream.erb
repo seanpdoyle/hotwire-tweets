@@ -1,0 +1,5 @@
+<%= turbo_stream.replace dom_id(@tweet, :new_reply) do %>
+  <%= form_with model: @reply, id: dom_id(@tweet, :new_reply), url: tweet_replies_path(@tweet), class: "grid cols-2 gap-y-2 p-6", data: { turbo_frame: "_top" } do |form| %>
+    <%= render partial: "tweets/form", object: form %>
+  <% end %>
+<% end %>

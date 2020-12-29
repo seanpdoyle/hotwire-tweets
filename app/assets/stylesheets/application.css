@@ -33,7 +33,3 @@
 .signed-in .signed-in\:flex {
   display: flex;
 }
-
-.initial\:last-of-type:last-of-type {
-  display: initial;
-}

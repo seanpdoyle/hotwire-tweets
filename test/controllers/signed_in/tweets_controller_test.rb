@@ -26,6 +26,17 @@ class SignedIn::TweetsControllerTest < ActionDispatch::IntegrationTest
     assert_rich_text_area described_by: "can't be blank"
   end
 
+  test "create with an invalid Turbo Stream Tweet submission" do
+    sign_in_as :alice
+
+    assert_no_difference -> { Tweet.count } do
+      post tweets_path, params: { tweet: { content: "" } }, as: :turbo_stream
+    end
+
+    assert_response :unprocessable_entity
+    assert_css %(turbo-stream[action="replace"][target="new_tweet"]), count: 1
+  end
+
   test "create requires a signed in session" do
     post tweets_path
 

@@ -20,3 +20,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     click_button "Sign in"
   end
 end
+
+Capybara.configure do |config|
+  config.default_max_wait_time = 3.seconds
+end

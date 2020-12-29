@@ -28,6 +28,19 @@ class SignedIn::RepliesControllerTest < ActionDispatch::IntegrationTest
     assert_rich_text_area described_by: "can't be blank"
   end
 
+  test "create with an invalid Turbo Stream Tweet submission" do
+    alice = users(:alice)
+    day_old = entries(:day_old)
+
+    sign_in_as alice
+    assert_no_difference [ -> { alice.entries.tweets.count }, -> { day_old.children.replies.count } ] do
+      post tweet_replies_path(day_old), params: { tweet: { content: "" } }, as: :turbo_stream
+    end
+
+    assert_response :unprocessable_entity
+    assert_css %(turbo-stream[action="replace"][target="#{dom_id(day_old, :new_reply)}"]), count: 1
+  end
+
   test "create raises ActiveRecord::RecordNotFound for a Trashed subject" do
     day_old = entries(:day_old).tap(&:trashed!)
 

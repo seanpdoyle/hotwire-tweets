@@ -1,0 +1,5 @@
+<%= turbo_stream.replace "new_tweet" do %>
+  <%= form_with model: @tweet, id: "new_tweet", class: "grid cols-2 gap-y-2 p-6", data: { turbo_frame: "_top" } do |form| %>
+    <%= render partial: "tweets/form", object: form %>
+  <% end %>
+<% end %>
