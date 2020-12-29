@@ -1,0 +1,11 @@
+<ul>
+  <% tweets.each do |tweet| %>
+    <li>
+      <%= tweet.content %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to new_tweet_path do %>
+  New
+<% end %>
