@@ -7,7 +7,7 @@
 </ul>
 
 <%= turbo_frame_tag tweets.new do %>
-  <%= link_to new_tweet_path do %>
+  <%= link_to new_tweet_path, data: { turbo_frame: "dialog" } do %>
     New
   <% end %>
 <% end %>

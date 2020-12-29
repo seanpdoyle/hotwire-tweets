@@ -13,6 +13,11 @@
   </head>
 
   <body>
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
+    <dialog data-controller="dialog">
+      <turbo-frame id="dialog"></turbo-frame>
+    </dialog>
   </body>
 </html>
