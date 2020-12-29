@@ -1,6 +1,8 @@
-<%= form_with model: tweet do |form| %>
-  <%= form.label :content %>
-  <%= form.text_area :content %>
+<%= turbo_frame_tag tweet do %>
+  <%= form_with model: tweet, data: { turbo_frame: "_top" } do |form| %>
+    <%= form.label :content %>
+    <%= form.text_area :content %>
 
-  <%= form.button %>
+    <%= form.button %>
+  <% end %>
 <% end %>

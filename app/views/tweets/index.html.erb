@@ -6,6 +6,8 @@
   <% end %>
 </ul>
 
-<%= link_to new_tweet_path do %>
-  New
+<%= turbo_frame_tag tweets.new do %>
+  <%= link_to new_tweet_path do %>
+    New
+  <% end %>
 <% end %>
