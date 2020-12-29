@@ -10,8 +10,15 @@ class TweetsController < ApplicationController
   end
 
   def create
-    Tweet.create!(params.require(:tweet).permit(:content))
+    tweet = Tweet.new(params.require(:tweet).permit(:content))
 
-    redirect_to root_url
+    if tweet.save
+      redirect_to root_url
+    else
+      respond_to do |format|
+        format.turbo_stream { render locals: { tweet: tweet } }
+        format.html { render :new, locals: { tweet: tweet }, status: :unprocessable_entity }
+      end
+    end
   end
 end

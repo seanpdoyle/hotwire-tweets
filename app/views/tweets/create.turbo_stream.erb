@@ -1,0 +1,3 @@
+<%= turbo_stream.replace dom_id(tweet, :form) do %>
+  <%= render partial: "form", locals: { tweet: tweet }, formats: :html %>
+<% end %>

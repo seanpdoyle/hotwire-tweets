@@ -1,0 +1,7 @@
+<%= form_with model: tweet, id: dom_id(tweet, :form), data: { turbo_frame: "_top" } do |form| %>
+  <%= form.label :content %>
+  <%= form.text_area :content, aria: { describedby: { form.field_id(:content, :error) => tweet.errors.include?(:content) } } %>
+  <%= tag.span(tweet.errors[:content].to_sentence, id: form.field_id(:content, :errors)) if tweet.errors.include?(:content) %>
+
+  <%= form.button %>
+<% end %>
