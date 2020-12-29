@@ -1,0 +1,18 @@
+DEFAULTS: &DEFAULTS
+  record: $LABEL (Tweet)
+  name: content
+
+week_old:
+  <<: *DEFAULTS
+  body: >
+    <div>I can't <strong>wait</strong> until next week!</div>
+
+day_old:
+  <<: *DEFAULTS
+  body: >
+    <div>I can't <strong>wait</strong> until tomorrow!</div>
+
+minute_old:
+  <<: *DEFAULTS
+  body: >
+    <div>I can't <strong>wait</strong> until tonight!</div>

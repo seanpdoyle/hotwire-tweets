@@ -1,0 +1,14 @@
+week_old:
+  entryable: $LABEL (Tweet)
+  creator: alice
+  created_at: <%= 1.week.ago.to_formatted_s(:db) %>
+
+day_old:
+  entryable: $LABEL (Tweet)
+  creator: bob
+  created_at: <%= 1.day.ago.to_formatted_s(:db) %>
+
+minute_old:
+  entryable: $LABEL (Tweet)
+  creator: alice
+  created_at: <%= 1.minute.ago.to_formatted_s(:db) %>

@@ -31,13 +31,7 @@
         <% 5.times.each do |number_of| %>
           <a class="flex text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0 outline-none ring-yellow-400 focus:ring">
             <span class="border rounded-full bg-blue-500 p-1 mr-1">
-              <svg class="h-4 w-4 text-white" viewBox="0 0 16 16">
-                <title>Bob</title>
-
-                <text text-anchor="middle" x="50%" y="50%" dy="0.35em" fill="currentColor" font-family="Arial">
-                  b
-                </text>
-              </svg>
+              <%= render partial: "users/avatar", object: nil, as: :user %>
             </span>
 
             bob replied to one of your tweets.
@@ -50,13 +44,7 @@
 
     <details class="relative">
       <summary class="cursor-pointer border rounded-full outline-none p-2 z-10 ring-yellow-400 focus:ring bg-blue-500">
-        <svg class="h-4 w-4 text-white" viewBox="0 0 16 16">
-          <title>Alice</title>
-
-          <text text-anchor="middle" x="50%" y="50%" dy="0.35em" fill="currentColor" font-family="Arial">
-            a
-          </text>
-        </svg>
+        <%= render partial: "users/avatar", object: nil, as: :user %>
         <span class="sr-only">actions</span>
       </summary>
 

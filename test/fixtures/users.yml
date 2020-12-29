@@ -1,0 +1,8 @@
+DEFAULTS: &DEFAULTS
+  username: $LABEL
+
+alice:
+  <<: *DEFAULTS
+
+bob:
+  <<: *DEFAULTS
