@@ -1,8 +1,14 @@
-<ul id="tweets">
+<ul id="tweets" data-controller="pagination" data-action="turbo:before-cache@document->pagination#preserveScroll turbo:before-render@document->pagination#injectIntoVisit">
   <%= render partial: "tweets/tweet", collection: tweets, layout: "li" %>
 
-  <li id="tweets-pagination">
-    <%= render partial: "tweets/pagination", locals: { page: page } %>
+  <li data-pagination-target="ignored">
+    <% if page.last? %>
+      No more pages!
+    <% else %>
+      <%= link_to root_path(page: page.next_param), data: { action: "turbo:click->pagination#prepareVisit" } do %>
+        Next page
+      <% end %>
+    <% end %>
   </li>
 </ul>
 

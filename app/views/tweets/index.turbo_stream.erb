@@ -1,9 +1,0 @@
-<%= turbo_stream.remove "tweets-pagination" %>
-
-<%= turbo_stream.append "tweets" do %>
-  <%= render partial: "tweets/tweet", collection: tweets, layout: "li" %>
-
-  <li id="tweets-pagination">
-    <%= render partial: "tweets/pagination", locals: { page: page } %>
-  </li>
-<% end %>
