@@ -1,13 +1,9 @@
-<ul id="tweets">
+<%= turbo_stream.remove "tweets-pagination" %>
+
+<%= turbo_stream.append "tweets" do %>
   <%= render partial: "tweets/tweet", collection: tweets, layout: "li" %>
 
   <li id="tweets-pagination">
     <%= render partial: "tweets/pagination", locals: { page: page } %>
   </li>
-</ul>
-
-<%= turbo_frame_tag tweets.new do %>
-  <%= link_to new_tweet_path, data: { turbo_frame: "dialog" } do %>
-    New
-  <% end %>
 <% end %>

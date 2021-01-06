@@ -1,8 +1,8 @@
 class TweetsController < ApplicationController
   def index
-    tweets = Tweet.all
+    set_page_and_extract_portion_from Tweet.order(created_at: :desc)
 
-    render locals: { tweets: tweets }
+    render locals: { tweets: @page.records, page: @page }
   end
 
   def new

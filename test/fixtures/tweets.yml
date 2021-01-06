@@ -1,0 +1,6 @@
+<% (0..365).each do |day| %>
+tweet_<%= day %>s_ago:
+  content: "<%= day.days.ago.to_date.to_formatted_s(:long) %> was <%= day %> <%= "day".pluralize(day) %> ago"
+  created_at: <%= day.days.ago.to_formatted_s(:db) %>
+  updated_at: <%= day.days.ago.to_formatted_s(:db) %>
+<% end %>

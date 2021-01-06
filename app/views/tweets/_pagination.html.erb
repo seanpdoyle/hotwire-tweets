@@ -1,0 +1,7 @@
+<% if page.last? %>
+  No more pages!
+<% else %>
+  <%= button_to root_path(page: page.next_param), method: :get do %>
+    Next page
+  <% end %>
+<% end %>
