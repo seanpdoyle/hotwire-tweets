@@ -11,6 +11,6 @@
   <% end %>
 </section>
 
-<section id="entries" class="max-w-prose max-w-sm w-full lg:w-1/3">
+<section id="entries" class="max-w-prose max-w-sm w-full lg:w-1/3" data-controller="pagination" data-action="turbo:before-cache@document->pagination#preserveScroll turbo:before-render@document->pagination#injectIntoVisit">
   <%= render partial: "entries/page", object: @page %>
 </section>

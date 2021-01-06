@@ -24,26 +24,36 @@ class TweetsTest < ApplicationSystemTestCase
 
     click_on "Load more"
 
+    assert_tweet tweets.first
     assert_tweet tweets.offset(15).first
-    assert_no_tweet tweets.first
     assert_no_tweet tweets.offset(45).first
+    assert_equal current_url, root_url(page: 2)
 
     click_on "Load more"
 
+    assert_tweet tweets.first
+    assert_tweet tweets.offset(15).first
     assert_tweet tweets.offset(45).first
-    assert_no_tweet tweets.offset(15).first
     assert_no_tweet tweets.offset(95).first
+    assert_equal current_url, root_url(page: 3)
 
     click_on "Load more"
 
+    assert_tweet tweets.first
+    assert_tweet tweets.offset(15).first
+    assert_tweet tweets.offset(45).first
     assert_tweet tweets.offset(95).first
-    assert_no_tweet tweets.offset(45).first
     assert_no_tweet tweets.offset(195).first
+    assert_equal current_url, root_url(page: 4)
 
     click_on "Load more"
 
+    assert_tweet tweets.first
+    assert_tweet tweets.offset(15).first
+    assert_tweet tweets.offset(45).first
+    assert_tweet tweets.offset(95).first
     assert_tweet tweets.offset(195).first
-    assert_no_tweet tweets.offset(95).first
+    assert_equal current_url, root_url(page: 5)
   end
 
   test "Searches a feed of Tweets with a query" do
