@@ -111,6 +111,14 @@ GIT
       thor (~> 1.0)
 
 GIT
+  remote: https://github.com/rails/tailwindcss-rails.git
+  revision: 38acbb06a31f2337f167f5981635e787a139b371
+  branch: main
+  specs:
+    tailwindcss-rails (0.3.3)
+      rails (>= 6.0.0)
+
+GIT
   remote: https://github.com/rails/web-console.git
   revision: 5345813cce3219b073a6f7310f2dcb6c6aedb334
   specs:
@@ -249,6 +257,7 @@ DEPENDENCIES
   selenium-webdriver
   spring
   stimulus-rails!
+  tailwindcss-rails!
   turbo-rails!
   tzinfo-data
   web-console!

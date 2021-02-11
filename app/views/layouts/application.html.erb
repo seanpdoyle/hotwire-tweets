@@ -6,6 +6,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= stylesheet_link_tag "inter-font", data: { turbo_track: "reload" } %>
+    <%= stylesheet_link_tag "tailwind", data: { turbo_track: "reload" } %>
     <%= stylesheet_link_tag 'application', media: 'all', data: { turbo_track: "reload" } %>
     <%= javascript_pack_tag 'application', data: { turbo_track: "reload" } %>
     <%= yield :head %>
