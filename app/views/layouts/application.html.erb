@@ -6,6 +6,13 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <% if Current.session.signed_in? %>
+      <style type="text/css">
+        [data-visible-to-user]:not([data-visible-to-user~="<%= Current.user.id %>"]) {
+          display: none !important;
+        }
+      </style>
+    <% end %>
     <%= stylesheet_link_tag "inter-font", data: { turbo_track: "reload" } %>
     <%= stylesheet_link_tag "tailwind", data: { turbo_track: "reload" } %>
     <%= stylesheet_link_tag 'application', media: 'all', data: { turbo_track: "reload" } %>
@@ -14,7 +21,7 @@
     <%= stimulus_include_tags %>
   </head>
 
-  <body>
+  <body class="<%= "signed-in" if Current.session.signed_in? %>">
     <%= render "header" %>
 
     <main class="flex flex-col items-center min-h-screen">

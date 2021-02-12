@@ -17,3 +17,15 @@
 .last-of-type\:flex:last-of-type {
   display: flex;
 }
+
+.signed-in .signed-in\:hidden {
+  display: none;
+}
+
+.signed-in .signed-in\:initial {
+  display: initial;
+}
+
+.signed-in .signed-in\:flex {
+  display: flex;
+}

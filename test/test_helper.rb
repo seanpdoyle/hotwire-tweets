@@ -15,5 +15,17 @@ class ActiveSupport::TestCase
 end
 
 class ActionDispatch::IntegrationTest
+  include CapybaraTestHelper
   include TweetsTestHelper
+
+  def sign_in_as(user)
+    username =
+      case user when Symbol then users(user).username
+      else user.username
+      end
+
+    post sessions_path, params: {
+      session: { username: username, password: "password" }
+    }
+  end
 end

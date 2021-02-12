@@ -1,0 +1,21 @@
+<%= form_with model: @session, class: "grid cols-2 gap-y-2 p-6" do |form| %>
+  <% if @session.errors.include? :base %>
+    <%= tag.span @session.errors[:base].to_sentence, id: form.field_id(:base, :errors), class: "colspan-2 text-red-500" %>
+  <% end %>
+
+  <%= form.label :username %>
+  <%= form.text_field :username, aria: { describedby: { form.field_id(:username, :errors) => @session.errors.include?(:username) } } %>
+  <% if @session.errors.include? :username %>
+    <%= tag.span @session.errors[:username].to_sentence, id: form.field_id(:username, :errors), class: "colspan-2 text-red-500" %>
+  <% end %>
+
+  <%= form.label :password %>
+  <%= form.password_field :password, aria: { describedby: { form.field_id(:password, :errors) => @session.errors.include?(:password) } } %>
+  <% if @session.errors.include? :password %>
+    <%= tag.span @session.errors[:password].to_sentence, id: form.field_id(:password, :errors), class: "colspan-2 text-red-500" %>
+  <% end %>
+
+  <%= form.button class: "colspan-2 py-2 px-4 bg-black text-white font-semibold rounded-lg shadow-md hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-opacity-75" do %>
+    Sign in
+  <% end %>
+<% end %>

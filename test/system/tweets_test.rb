@@ -29,4 +29,16 @@ class TweetsTest < ApplicationSystemTestCase
 
     assert_tweet day_old
   end
+
+  test "Cannot tweet unless logged in" do
+    visit root_path
+
+    assert_no_text "New"
+  end
+
+  test "Cannot delete a tweet unless they authored it" do
+    visit root_path
+
+    assert_no_button "Delete"
+  end
 end

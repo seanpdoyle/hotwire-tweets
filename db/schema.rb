@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_12_021032) do
+ActiveRecord::Schema.define(version: 2021_02_12_054508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -60,8 +60,10 @@ ActiveRecord::Schema.define(version: 2021_02_12_021032) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "creator_id", null: false
+    t.datetime "trashed_at"
     t.index ["creator_id"], name: "index_entries_on_creator_id"
     t.index ["entryable_type", "entryable_id"], name: "index_entries_on_entryable"
+    t.index ["trashed_at"], name: "index_entries_on_trashed_at"
   end
 
   create_table "tweets", force: :cascade do |t|
@@ -71,6 +73,7 @@ ActiveRecord::Schema.define(version: 2021_02_12_021032) do
     t.citext "username", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "password_digest", null: false
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 

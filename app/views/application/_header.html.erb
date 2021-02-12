@@ -17,7 +17,7 @@
   </form>
 
   <nav class="flex justify-end items-center space-x-2 mx-2">
-    <details class="relative">
+    <details class="relative hidden signed-in:initial">
       <summary class="bg-white cursor-pointer border rounded-full focus:outline-none p-2 z-10 ring-yellow-400 focus:ring">
         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
@@ -42,28 +42,32 @@
       </div>
     </details>
 
-    <details class="relative">
+    <details class="relative hidden signed-in:initial">
       <summary class="cursor-pointer border rounded-full outline-none p-2 z-10 ring-yellow-400 focus:ring bg-blue-500">
-        <%= render partial: "users/avatar", object: nil, as: :user %>
+        <%= render partial: "users/avatar", object: Current.user, as: :user %>
         <span class="sr-only">actions</span>
       </summary>
 
       <div class="absolute border bg-white flex flex-col items-stretch right-0 w-48 p-2 rounded-lg shadow-lg mt-3">
         <div class="block border-t border-l fill-current bg-white w-4 h-4 absolute right-0 top-0 mr-2 -mt-2 z-0 transform rotate-45"></div>
 
-        <button class="text-left z-10">
+        <%= button_to session_path, method: :delete, class: "text-left z-10" do %>
           Sign out
-        </button>
+        <% end %>
       </div>
     </details>
 
-    <div class="fixed right-0 bottom-0">
-      <a href="#" class="bg-black inline-block border-2 rounded-lg px-2 py-4 m-4 text-white hover:text-yellow-400 focus:text-yellow-400">
+    <%= link_to new_session_path, class: "signed-in:hidden text-white" do %>
+      Sign in
+    <% end %>
+
+    <div class="fixed right-0 bottom-0 hidden signed-in:initial">
+      <%= link_to new_tweet_path, class: "bg-black inline-block border-2 rounded-lg px-2 py-4 m-4 text-white hover:text-yellow-400 focus:text-yellow-400" do %>
         <svg class="inline-block h-8 w-8" viewBox="0 0 32 32" fill="none" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
         </svg>
         New
-      </a>
+      <% end %>
     </div>
   </nav>
 </header>

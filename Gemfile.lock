@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/citizensadvice/capybara_accessible_selectors.git
+  revision: d61971c609e3b019df6dc0ea0c9ce11433f3d0f7
+  branch: main
+  specs:
+    capybara_accessible_selectors (0.4.1)
+      capybara (~> 3)
+
+GIT
   remote: https://github.com/hotwired/hotwire-rails.git
   revision: 28d25901c0b0b4492e473478e7e10ca9fc94213e
   branch: main
@@ -142,6 +150,7 @@ GEM
   specs:
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.5.1)
       msgpack (~> 1.0)
@@ -248,9 +257,11 @@ PLATFORMS
   x86_64-darwin-20
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  capybara_accessible_selectors!
   hotwire-rails!
   jbuilder (~> 2.7)
   listen (~> 3.3)
