@@ -3,10 +3,22 @@ week_old:
   creator: alice
   created_at: <%= 1.week.ago.to_formatted_s(:db) %>
 
+week_old_retweet:
+  entryable: week_old (Retweet)
+  parent: week_old
+  creator: bob
+  created_at: <%= (1.week.ago + 10.minutes).to_formatted_s(:db) %>
+
 day_old:
   entryable: $LABEL (Tweet)
   creator: bob
   created_at: <%= 1.day.ago.to_formatted_s(:db) %>
+
+day_old_retweet:
+  entryable: day_old (Retweet)
+  parent: day_old
+  creator: alice
+  created_at: <%= (1.day.ago + 10.minutes).to_formatted_s(:db) %>
 
 day_old_reply:
   entryable: $LABEL (Tweet)
@@ -18,3 +30,8 @@ minute_old:
   entryable: $LABEL (Tweet)
   creator: alice
   created_at: <%= 1.minute.ago.to_formatted_s(:db) %>
+
+month_old:
+  entryable: $LABEL (Tweet)
+  creator: carol
+  created_at: <%= 1.month.ago.to_formatted_s(:db) %>

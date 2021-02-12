@@ -7,8 +7,20 @@ module TweetsTestHelper
     assert_no_selector :tweet, tweet, **options
   end
 
+  def assert_retweet(retweet, **options)
+    assert_selector :tweet, retweet.parent, **options
+  end
+
+  def assert_no_retweet(retweet, **options)
+    assert_no_selector :tweet, retweet.parent, **options
+  end
+
   def within_tweet(tweet, **options, &block)
     within :tweet, tweet, match: :first, **options, &block
+  end
+
+  def within_retweet(retweet, **options, &block)
+    within :tweet, retweet.parent, match: :first, **options, &block
   end
 end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_15_043549) do
+ActiveRecord::Schema.define(version: 2021_02_15_044559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -66,6 +66,11 @@ ActiveRecord::Schema.define(version: 2021_02_15_043549) do
     t.index ["entryable_type", "entryable_id"], name: "index_entries_on_entryable"
     t.index ["parent_id"], name: "index_entries_on_parent_id"
     t.index ["trashed_at"], name: "index_entries_on_trashed_at"
+  end
+
+  create_table "retweets", force: :cascade do |t|
+    t.bigint "tweet_id", null: false
+    t.index ["tweet_id"], name: "index_retweets_on_tweet_id"
   end
 
   create_table "tweets", force: :cascade do |t|

@@ -22,7 +22,7 @@ minute_old:
   body: >
     <div>I can't <strong>wait</strong> until tonight!</div>
 
-minute_old_tweet:
+month_old:
   <<: *DEFAULTS
   body: >
-    <div>I can't <strong>wait</strong> until tonight!</div>
+    <div>I can't <strong>wait</strong> until next month!</div>

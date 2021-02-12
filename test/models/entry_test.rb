@@ -1,6 +1,31 @@
 require "test_helper"
 
 class EntryTest < ActiveSupport::TestCase
+  test ".activities includes Tweets" do
+    day_old, week_old = entries(:day_old, :week_old)
+
+    activities = Entry.activities
+
+    assert_includes activities, day_old
+    assert_includes activities, week_old
+  end
+
+  test ".activities excludes Replies" do
+    day_old_reply = entries(:day_old_reply)
+
+    activities = Entry.activities
+
+    assert_not_includes activities, day_old_reply
+  end
+
+  test ".activities includes Retweets" do
+    week_old_retweet = entries(:week_old_retweet)
+
+    activities = Entry.activities
+
+    assert_includes activities, week_old_retweet
+  end
+
   test ".trashed includes Trashed Entries and excludes not Trashed Entries" do
     day_old, week_old = entries(:day_old, :week_old).each(&:trashed!)
 

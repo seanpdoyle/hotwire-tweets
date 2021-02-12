@@ -45,6 +45,21 @@ class SignedIn::TweetsControllerTest < ActionDispatch::IntegrationTest
     assert_predicate tweet.reload, :trashed?
   end
 
+  test "destroy on an original tweet does not trash Retweets" do
+    alice, bob = users(:alice, :bob)
+    minute_old = entries(:minute_old)
+    retweet = Entry.enter! Retweet.new(tweet: minute_old.tweet), parent: minute_old, creator: bob
+
+    sign_in_as alice
+    assert_difference -> { alice.entries.count } => 0, -> { alice.entries.trashed.tweets.count } => +1, -> { bob.entries.count } => 0 do
+      delete tweet_path(minute_old)
+    end
+
+    assert_redirected_to root_url
+    assert_not_predicate retweet.reload, :trashed?
+    assert_predicate minute_old.reload, :trashed?
+  end
+
   test "destroy requires the Current user is the Tweet's author" do
     bob = users(:bob)
     tweet = entries(:minute_old)

@@ -1,0 +1,8 @@
+DEFAULTS: &DEFAULTS
+  tweet: $LABEL
+
+day_old:
+  <<: *DEFAULTS
+
+week_old:
+  <<: *DEFAULTS

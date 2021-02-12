@@ -14,6 +14,10 @@
  *= require_self
  */
 
+.group.embedded .group-embedded\:hidden {
+  display: none;
+}
+
 .last-of-type\:flex:last-of-type {
   display: flex;
 }
