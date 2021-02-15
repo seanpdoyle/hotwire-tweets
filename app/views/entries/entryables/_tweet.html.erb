@@ -25,13 +25,13 @@
       <span class="sr-only">Retweet</span>
     </button>
 
-    <a href="#" class="hidden signed-in:flex items-center text-gray-600">
+    <%= link_to new_tweet_reply_path(tweet), class: "hidden signed-in:flex items-center text-gray-600" do %>
       <svg role="presentation" class="w-4 h-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
       </svg>
-      0
+      <%= tweet.children.not_trashed.tweets.count %>
       <span class="sr-only">Reply</span>
-    </a>
+    <% end %>
 
     <%= button_to tweet_path(tweet), method: :delete, class: "hidden signed-in:flex items-center text-gray-600", data: { visible_to_user: tweet.creator_id } do %>
       <svg role="presentation" class="w-4 h-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">

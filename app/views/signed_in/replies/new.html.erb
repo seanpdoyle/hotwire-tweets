@@ -1,5 +1,5 @@
 <section class="w-full lg:w-1/3">
-  <%= form_with model: @tweet, class: "grid cols-2 gap-y-2 p-6" do |form| %>
+  <%= form_with model: @reply, url: tweet_replies_path(@tweet), class: "grid cols-2 gap-y-2 p-6" do |form| %>
     <%= render partial: "tweets/form", object: form %>
   <% end %>
 </section>

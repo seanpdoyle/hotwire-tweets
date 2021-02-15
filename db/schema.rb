@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_12_054508) do
+ActiveRecord::Schema.define(version: 2021_02_15_043549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -61,8 +61,10 @@ ActiveRecord::Schema.define(version: 2021_02_12_054508) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "creator_id", null: false
     t.datetime "trashed_at"
+    t.bigint "parent_id"
     t.index ["creator_id"], name: "index_entries_on_creator_id"
     t.index ["entryable_type", "entryable_id"], name: "index_entries_on_entryable"
+    t.index ["parent_id"], name: "index_entries_on_parent_id"
     t.index ["trashed_at"], name: "index_entries_on_trashed_at"
   end
 
@@ -79,5 +81,6 @@ ActiveRecord::Schema.define(version: 2021_02_12_054508) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "entries", "entries", column: "parent_id"
   add_foreign_key "entries", "users", column: "creator_id"
 end

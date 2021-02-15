@@ -12,6 +12,7 @@ class SignedIn::TweetsControllerTest < ActionDispatch::IntegrationTest
     tweet = alice.entries.tweets.last
     assert_equal alice, tweet.creator
     assert_equal "Hello, world!", tweet.content.to_plain_text
+    assert_includes alice.entries.tweets, tweet.entry
   end
 
   test "create with an invalid HTML Tweet submission" do

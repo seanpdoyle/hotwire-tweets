@@ -8,6 +8,12 @@ day_old:
   creator: bob
   created_at: <%= 1.day.ago.to_formatted_s(:db) %>
 
+day_old_reply:
+  entryable: $LABEL (Tweet)
+  parent: day_old
+  creator: alice
+  created_at: <%= (1.day.ago + 10.minutes).to_formatted_s(:db) %>
+
 minute_old:
   entryable: $LABEL (Tweet)
   creator: alice

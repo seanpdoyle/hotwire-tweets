@@ -12,7 +12,17 @@ day_old:
   body: >
     <div>I can't <strong>wait</strong> until tomorrow!</div>
 
+day_old_reply:
+  <<: *DEFAULTS
+  body: >
+    <div>I can't either!</div>
+
 minute_old:
+  <<: *DEFAULTS
+  body: >
+    <div>I can't <strong>wait</strong> until tonight!</div>
+
+minute_old_tweet:
   <<: *DEFAULTS
   body: >
     <div>I can't <strong>wait</strong> until tonight!</div>

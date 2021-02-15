@@ -22,18 +22,27 @@ class TweetsTest < ApplicationSystemTestCase
     assert_no_tweet day_old
   end
 
-  test "Visits a Tweet" do
-    day_old= entries(:day_old)
+  test "Visits a Tweet and reads replies" do
+    day_old, day_old_reply = entries(:day_old, :day_old_reply)
 
     visit(root_path).then { click_on localize day_old.created_at, format: :short }
 
     assert_tweet day_old
+    assert_tweet day_old_reply, position: 1
   end
 
   test "Cannot tweet unless logged in" do
     visit root_path
 
     assert_no_text "New"
+  end
+
+  test "Cannot reply unless logged in" do
+    day_old = entries(:day_old)
+
+    visit tweet_path(day_old)
+
+    assert_no_button "Reply"
   end
 
   test "Cannot delete a tweet unless they authored it" do

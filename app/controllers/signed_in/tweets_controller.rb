@@ -17,7 +17,7 @@ module SignedIn
     end
 
     def destroy
-      tweet = Current.user.entries.tweets.find(params[:id])
+      tweet = Current.user.entries.find(params[:id])
 
       tweet.trashed!
 
