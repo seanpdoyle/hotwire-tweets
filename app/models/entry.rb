@@ -1,5 +1,5 @@
 class Entry < ApplicationRecord
-  delegated_type :entryable, types: %w[ Tweet Retweet ], dependent: :destroy
+  delegated_type :entryable, types: %w[ Tweet Retweet Subscription ], dependent: :destroy
 
   belongs_to :creator, class_name: "User"
   belongs_to :parent, class_name: "Entry", optional: true, touch: true

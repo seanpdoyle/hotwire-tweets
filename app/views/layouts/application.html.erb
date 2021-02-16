@@ -8,6 +8,7 @@
 
     <% if Current.session.signed_in? %>
       <style type="text/css">
+        [data-hidden-from-user~="<%= Current.user.id %>"],
         [data-visible-to-user]:not([data-visible-to-user~="<%= Current.user.id %>"]) {
           display: none !important;
         }

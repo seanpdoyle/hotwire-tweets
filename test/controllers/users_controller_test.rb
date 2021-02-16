@@ -11,4 +11,12 @@ class UserControllerTest < ActionDispatch::IntegrationTest
     assert_tweet week_old, position: 3
     assert_no_tweet month_old
   end
+
+  test "show excludes Trashed activities" do
+    minute_old = entries(:minute_old).tap(&:trashed!)
+
+    get user_path(users(:alice))
+
+    assert_no_tweet minute_old
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_15_044559) do
+ActiveRecord::Schema.define(version: 2021_02_16_002159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -73,6 +73,15 @@ ActiveRecord::Schema.define(version: 2021_02_15_044559) do
     t.index ["tweet_id"], name: "index_retweets_on_tweet_id"
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "subscriber_id", null: false
+    t.bigint "publisher_id", null: false
+    t.index ["publisher_id"], name: "index_subscriptions_on_publisher_id"
+    t.index ["subscriber_id", "publisher_id"], name: "index_subscriptions_on_subscriber_id_and_publisher_id", unique: true
+    t.index ["subscriber_id"], name: "index_subscriptions_on_subscriber_id"
+    t.check_constraint "subscriber_id <> publisher_id", name: "self_subscription_check"
+  end
+
   create_table "tweets", force: :cascade do |t|
   end
 
@@ -88,4 +97,6 @@ ActiveRecord::Schema.define(version: 2021_02_15_044559) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "entries", "entries", column: "parent_id"
   add_foreign_key "entries", "users", column: "creator_id"
+  add_foreign_key "subscriptions", "users", column: "publisher_id"
+  add_foreign_key "subscriptions", "users", column: "subscriber_id"
 end

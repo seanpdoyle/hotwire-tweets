@@ -77,4 +77,22 @@ class SignedIn::TweetsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :forbidden
   end
+
+  test "index collects Tweets from the User's subscriptions" do
+    minute_old, minute_old_reply = entries(:minute_old, :minute_old_reply)
+    day_old, day_old_retweet, day_old_reply = entries(:day_old, :day_old_retweet, :day_old_reply)
+    week_old, month_old = entries(:week_old, :month_old)
+    alice, bob = users(:alice, :bob)
+    bob.subscribe_to alice
+
+    sign_in_as(bob).then { get root_url }
+
+    assert_tweet minute_old, position: 1
+    assert_retweet day_old_retweet, position: 2
+    assert_tweet day_old, position: 3
+    assert_tweet week_old, position: 4
+    assert_no_tweet minute_old_reply
+    assert_no_tweet day_old_reply
+    assert_no_tweet month_old
+  end
 end

@@ -7,6 +7,10 @@ Rails.application.routes.draw do
       resources :retweets, only: :create
     end
     resources :retweets, only: :destroy
+    resources :users, only: [] do
+      resources :subscriptions, only: :create
+      resources :unsubscriptions, only: :create
+    end
   end
 
   resources :sessions, only: [:new, :create]

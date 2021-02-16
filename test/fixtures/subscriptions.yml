@@ -1,0 +1,3 @@
+alice_publishes_to_bob:
+  publisher: alice
+  subscriber: bob

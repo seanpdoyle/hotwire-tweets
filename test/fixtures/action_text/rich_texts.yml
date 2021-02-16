@@ -22,6 +22,11 @@ minute_old:
   body: >
     <div>I can't <strong>wait</strong> until tonight!</div>
 
+minute_old_reply:
+  <<: *DEFAULTS
+  body: >
+    <div>I can't either!</div>
+
 month_old:
   <<: *DEFAULTS
   body: >
