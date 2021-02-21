@@ -6,12 +6,15 @@ class User < ApplicationRecord
   has_many :publishers, -> { merge(Entry.not_trashed) }, through: :subscriptions, source: :publisher
   has_many :publishings, class_name: "Subscription", foreign_key: :publisher_id
   has_many :followings, -> { not_trashed }, through: :publishings, source: :entry
+  has_many :mentions
+  has_many :mentionings, through: :mentions, source: :entry
 
   def notifications
     Entry.
       where.not(creator: self).
       where(parent: entries.tweets).
       or(Entry.where(id: followings)).
+      or(Entry.where(id: mentionings)).
       newest_to_oldest
   end
 

@@ -1,5 +1,5 @@
 class Entry < ApplicationRecord
-  delegated_type :entryable, types: %w[ Tweet Retweet Subscription ], dependent: :destroy
+  delegated_type :entryable, types: %w[ Tweet Retweet Subscription Mention ], dependent: :destroy
 
   belongs_to :creator, class_name: "User"
   belongs_to :parent, class_name: "Entry", optional: true, touch: true
@@ -12,6 +12,8 @@ class Entry < ApplicationRecord
   scope :replies, -> { tweets.where.not parent: nil }
   scope :trashed, -> { where.not trashed_at: nil }
   scope :not_trashed, -> { where trashed_at: nil }
+
+  after_create -> { MentionsJob.perform_now self }, if: :tweet?
 
   delegate_missing_to :entryable
 

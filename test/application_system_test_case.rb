@@ -2,6 +2,7 @@ require "test_helper"
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   include ActionView::Helpers::TranslationHelper
+  include ActiveJob::TestHelper
   include CapybaraTestHelper
   include TweetsTestHelper
 

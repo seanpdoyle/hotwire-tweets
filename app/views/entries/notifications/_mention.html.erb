@@ -1,0 +1,7 @@
+<%= link_to tweet_path(mention.parent), class: "flex text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0 outline-none focus:ring" do %>
+  <span class="border rounded-full bg-blue-500 p-1 mr-1">
+    <%= render partial: "users/avatar", object: mention.creator, as: :user %>
+  </span>
+
+  <%= mention.creator.username %> mentioned you in a tweet.
+<% end %>

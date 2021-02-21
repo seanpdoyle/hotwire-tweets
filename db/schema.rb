@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_16_002159) do
+ActiveRecord::Schema.define(version: 2021_02_21_171906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -68,6 +68,11 @@ ActiveRecord::Schema.define(version: 2021_02_16_002159) do
     t.index ["trashed_at"], name: "index_entries_on_trashed_at"
   end
 
+  create_table "mentions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_mentions_on_user_id"
+  end
+
   create_table "retweets", force: :cascade do |t|
     t.bigint "tweet_id", null: false
     t.index ["tweet_id"], name: "index_retweets_on_tweet_id"
@@ -97,6 +102,7 @@ ActiveRecord::Schema.define(version: 2021_02_16_002159) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "entries", "entries", column: "parent_id"
   add_foreign_key "entries", "users", column: "creator_id"
+  add_foreign_key "mentions", "users"
   add_foreign_key "subscriptions", "users", column: "publisher_id"
   add_foreign_key "subscriptions", "users", column: "subscriber_id"
 end
