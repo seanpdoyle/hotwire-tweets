@@ -5,6 +5,8 @@ class Entry < ApplicationRecord
   belongs_to :parent, class_name: "Entry", optional: true, touch: true
 
   has_many :children, class_name: "Entry", foreign_key: :parent_id
+  has_many :publishings, through: :creator
+  has_many :subscribers, through: :publishings
 
   scope :root, -> { where parent: nil }
   scope :activities, -> { retweets.or root.tweets }
@@ -15,6 +17,9 @@ class Entry < ApplicationRecord
   scope :containing, ->(query) { tweets.where(entryable_id: Tweet.containing(query)) }
 
   after_create -> { MentionsJob.perform_now self }, if: :tweet?
+  after_create -> { broadcast_prepend_later_to creator, :entries }, if: :public?
+  after_create -> { broadcast_prepend_later_to parent, :entries }, if: :reply?
+  after_create -> { subscribers.each { |subscriber| broadcast_prepend_later_to subscriber, :entries } }, if: :public?
 
   delegate_missing_to :entryable
 
@@ -31,5 +36,15 @@ class Entry < ApplicationRecord
 
   def trashed?
     trashed_at.present?
+  end
+
+  def reply?
+    parent&.tweet? && tweet?
+  end
+
+  def public?
+    return false if reply?
+
+    tweet? || retweet?
   end
 end
