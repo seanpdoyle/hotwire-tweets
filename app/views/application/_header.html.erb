@@ -28,17 +28,7 @@
       <div class="absolute border bg-white flex flex-col items-stretch right-0 w-72 p-2 rounded-lg shadow-lg mt-3">
         <div class="block border-t border-l fill-current bg-white w-4 h-4 absolute right-0 top-0 mr-2 -mt-2 z-0 transform rotate-45"></div>
 
-        <% 5.times.each do |number_of| %>
-          <a class="flex text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0 outline-none ring-yellow-400 focus:ring">
-            <span class="border rounded-full bg-blue-500 p-1 mr-1">
-              <%= render partial: "users/avatar", object: nil, as: :user %>
-            </span>
-
-            bob replied to one of your tweets.
-          </a>
-
-          <p class="text-xs title-font font-medium text-gray-500">on <%= localize number_of.days.ago, format: :short %></p>
-        <% end %>
+        <%= render partial: "entries/notification", collection: Current.session.signed_in? ? Current.user.notifications : Entry.none %>
       </div>
     </details>
 

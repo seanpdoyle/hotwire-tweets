@@ -1,0 +1,5 @@
+<article>
+  <%= render partial: "entries/notifications/#{notification.entryable_name}", object: notification %>
+
+  <p class="text-xs title-font font-medium text-gray-500">on <%= localize notification.created_at, format: :short %></p>
+</article>
