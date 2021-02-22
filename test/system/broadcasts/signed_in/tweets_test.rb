@@ -31,6 +31,12 @@ module Broadcasts
         assert_retweet new_retweet.entry, position: 1
         assert_tweet new_tweet, position: 2
         assert_tweet minute_old, position: 3
+
+        perform_enqueued_jobs { new_tweet.entry.trashed! }
+
+        assert_no_tweet new_tweet
+        assert_retweet new_retweet.entry, position: 1
+        assert_tweet minute_old, position: 2
       end
     end
   end

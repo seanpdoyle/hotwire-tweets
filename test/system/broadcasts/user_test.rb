@@ -27,6 +27,11 @@ module Broadcasts
       perform_enqueued_jobs { Entry.enter! new_reply, creator: bob, parent: minute_old }
 
       assert_no_tweet new_reply
+      assert_tweet minute_old, count: 2
+
+      perform_enqueued_jobs { minute_old.trashed! }
+
+      assert_tweet minute_old, count: 1
     end
   end
 end

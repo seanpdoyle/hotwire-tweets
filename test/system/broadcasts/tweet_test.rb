@@ -30,6 +30,10 @@ module Broadcasts
       assert_tweet minute_old, count: 1
       assert_tweet new_reply, position: 1, count: 1
       assert_tweet minute_old_reply, position: 2
+
+      perform_enqueued_jobs { minute_old_reply.trashed! }
+
+      assert_no_tweet minute_old_reply
     end
   end
 end

@@ -21,6 +21,10 @@ class Entry < ApplicationRecord
   after_create -> { broadcast_prepend_later_to parent, :entries }, if: :reply?
   after_create -> { subscribers.each { |subscriber| broadcast_prepend_later_to subscriber, :entries } }, if: :public?
 
+  after_update -> { broadcast_remove_to creator, :entries }, if: :trashed?
+  after_update -> { broadcast_remove_to parent, :entries }, if: :trashed?
+  after_update -> { subscribers.each { |subscriber| broadcast_remove_to subscriber, :entries } }, if: :trashed?
+
   delegate_missing_to :entryable
 
   def self.enter!(entryable, creator: Current.user, **attributes)
