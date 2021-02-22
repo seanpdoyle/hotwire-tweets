@@ -20,6 +20,10 @@ class Entry < ApplicationRecord
   after_create -> { broadcast_prepend_later_to creator, :entries }, if: :public?
   after_create -> { broadcast_prepend_later_to parent, :entries }, if: :reply?
   after_create -> { subscribers.each { |subscriber| broadcast_prepend_later_to subscriber, :entries } }, if: :public?
+  after_create -> { broadcast_prepend_later_to parent.creator, :notifications, target: :notifications, partial: "entries/notification" }, if: :retweet?
+  after_create -> { broadcast_prepend_later_to parent.creator, :notifications, target: :notifications, partial: "entries/notification" }, if: :reply?
+  after_create -> { broadcast_prepend_later_to mention.user, :notifications, target: :notifications, partial: "entries/notification" }, if: :mention?
+  after_create -> { broadcast_prepend_later_to subscription.publisher, :notifications, target: :notifications, partial: "entries/notification" }, if: :subscription?
 
   after_update -> { broadcast_remove_to creator, :entries }, if: :trashed?
   after_update -> { broadcast_remove_to parent, :entries }, if: :trashed?
