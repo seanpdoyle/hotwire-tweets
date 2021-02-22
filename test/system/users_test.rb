@@ -12,26 +12,25 @@ class UsersTest < ApplicationSystemTestCase
 
     click_on "Load more"
 
-    assert_no_tweet tweets.first
     assert_tweet tweets.offset(15).first
+    assert_no_tweet tweets.first
     assert_no_tweet tweets.offset(45).first
 
     click_on "Load more"
 
-    assert_no_tweet tweets.offset(15).first
     assert_tweet tweets.offset(45).first
+    assert_no_tweet tweets.offset(15).first
     assert_no_tweet tweets.offset(95).first
 
     click_on "Load more"
 
-    assert_no_tweet tweets.offset(45).first
     assert_tweet tweets.offset(95).first
+    assert_no_tweet tweets.offset(45).first
     assert_no_tweet tweets.offset(195).first
 
     click_on "Load more"
 
-    assert_no_tweet tweets.offset(95).first
     assert_tweet tweets.offset(195).first
+    assert_no_tweet tweets.offset(95).first
   end
-
 end

@@ -28,7 +28,7 @@
       <div class="absolute border bg-white flex flex-col items-stretch right-0 w-72 p-2 rounded-lg shadow-lg mt-3">
         <div class="block border-t border-l fill-current bg-white w-4 h-4 absolute right-0 top-0 mr-2 -mt-2 z-0 transform rotate-45"></div>
 
-        <%= render partial: "entries/notification", collection: Current.session.signed_in? ? Current.user.notifications : Entry.none %>
+        <%= turbo_frame_tag :notifications, src: notifications_path, loading: "lazy", target: "_top" %>
       </div>
     </details>
 

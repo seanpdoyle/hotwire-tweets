@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :replies, only: [:new, :create]
       resources :retweets, only: :create
     end
+    resources :notifications, only: :index
     resources :retweets, only: :destroy
     resources :users, only: [] do
       resources :subscriptions, only: :create

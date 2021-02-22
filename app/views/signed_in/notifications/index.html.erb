@@ -1,0 +1,9 @@
+<%= turbo_frame_tag :notifications do %>
+  <%= turbo_stream_from Current.user, :notifications %>
+
+  <div id="notifications">
+    <%= render partial: "entries/notification", collection: @page.records %>
+
+    <%= render partial: "page", object: @page %>
+  </div>
+<% end %>
