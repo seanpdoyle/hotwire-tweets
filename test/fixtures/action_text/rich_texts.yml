@@ -6,28 +6,40 @@ week_old:
   <<: *DEFAULTS
   body: >
     <div>I can't <strong>wait</strong> until next week!</div>
+  plain_text_body: I can't wait until next week!
 
 day_old:
   <<: *DEFAULTS
   body: >
     <div>I can't <strong>wait</strong> until tomorrow!</div>
+  plain_text_body: I can't wait until next tomorrow!
 
 day_old_reply:
   <<: *DEFAULTS
   body: >
     <div>I can't either!</div>
+  plain_text_body: I can't either!
 
 minute_old:
   <<: *DEFAULTS
   body: >
     <div>I can't <strong>wait</strong> until tonight!</div>
+  plain_text_body: I can't wait until tonight!
 
 minute_old_reply:
   <<: *DEFAULTS
   body: >
     <div>I can't either!</div>
+  plain_text_body: I can't either!
 
 month_old:
   <<: *DEFAULTS
   body: >
     <div>I can't <strong>wait</strong> until next month!</div>
+  plain_text_body: I can't wait until next month!
+
+tweet_from_8_days_ago:
+  <<: *DEFAULTS
+  body: >
+    <div><%= 8.days.ago.to_date.to_formatted_s(:long) %> was <strong>8</strong> days ago</div>
+  plain_text_body: <%= 8.days.ago.to_date.to_formatted_s(:long) %> was 8 s ago

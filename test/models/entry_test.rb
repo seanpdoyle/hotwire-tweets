@@ -44,6 +44,17 @@ class EntryTest < ActiveSupport::TestCase
     assert_includes trashed, week_old
   end
 
+  test ".containing includes matching results, and omits records that do not match" do
+    minute_old, day_old, day_old_reply, week_old = entries(:minute_old, :day_old, :day_old_reply, :week_old)
+
+    results = Entry.containing "can't wait until"
+
+    assert_includes results, minute_old
+    assert_includes results, day_old
+    assert_includes results, week_old
+    assert_not_includes results, day_old_reply
+  end
+
   test "#trashed? returns true when trashed, false otherwise" do
     day_old = entries(:day_old)
 

@@ -43,6 +43,17 @@ class TweetsControllerTest < ActionDispatch::IntegrationTest
     assert_tweet "Tweet Deleted"
   end
 
+  test "index with a search query excludes unreleated Tweets" do
+    minute_old, day_old, week_old, eight_days_ago = entries(:minute_old, :day_old, :week_old, :tweet_from_8_days_ago)
+
+    get root_path(q: "can't wait until")
+
+    assert_tweet minute_old, position: 1
+    assert_tweet day_old, position: 2
+    assert_tweet week_old, position: 3
+    assert_no_tweet eight_days_ago
+  end
+
   test "show raises an ActiveRecord::RecordNotFound error for a Trashed Tweet" do
     minute_old = entries(:minute_old).tap(&:trashed!)
 

@@ -13,6 +13,17 @@ class TweetsTest < ApplicationSystemTestCase
     assert_tweet week_old, position: 5
   end
 
+  test "Searches a feed of Tweets with a query" do
+    minute_old, day_old, week_old = entries(:minute_old, :day_old, :week_old)
+
+    visit root_path
+    fill_in("Search", with: "can't wait until tonight").then { send_keys :enter }
+
+    assert_tweet minute_old, position: 1
+    assert_no_tweet day_old
+    assert_no_tweet week_old
+  end
+
   test "Views a feed of Tweets from an author" do
     alice = users(:alice)
     minute_old, day_old_retweet, week_old, month_old = entries(:minute_old, :day_old_retweet, :week_old, :month_old)

@@ -12,6 +12,7 @@ class Entry < ApplicationRecord
   scope :replies, -> { tweets.where.not parent: nil }
   scope :trashed, -> { where.not trashed_at: nil }
   scope :not_trashed, -> { where trashed_at: nil }
+  scope :containing, ->(query) { tweets.where(entryable_id: Tweet.containing(query)) }
 
   after_create -> { MentionsJob.perform_now self }, if: :tweet?
 

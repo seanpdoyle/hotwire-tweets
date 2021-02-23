@@ -10,3 +10,6 @@ bob:
 
 carol:
   <<: *DEFAULTS
+
+daysagobot:
+  <<: *DEFAULTS
