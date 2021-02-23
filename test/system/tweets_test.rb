@@ -13,6 +13,39 @@ class TweetsTest < ApplicationSystemTestCase
     assert_tweet week_old, position: 5
   end
 
+  test "Paginates a long list of Tweets" do
+    daysagobot = users(:daysagobot)
+    tweets = daysagobot.entries.tweets.newest_to_oldest
+
+    visit root_path
+
+    assert_tweet tweets.first
+    assert_no_tweet tweets.offset(15).first
+
+    click_on "Load more"
+
+    assert_no_tweet tweets.first
+    assert_tweet tweets.offset(15).first
+    assert_no_tweet tweets.offset(45).first
+
+    click_on "Load more"
+
+    assert_no_tweet tweets.offset(15).first
+    assert_tweet tweets.offset(45).first
+    assert_no_tweet tweets.offset(95).first
+
+    click_on "Load more"
+
+    assert_no_tweet tweets.offset(45).first
+    assert_tweet tweets.offset(95).first
+    assert_no_tweet tweets.offset(195).first
+
+    click_on "Load more"
+
+    assert_no_tweet tweets.offset(95).first
+    assert_tweet tweets.offset(195).first
+  end
+
   test "Searches a feed of Tweets with a query" do
     minute_old, day_old, week_old = entries(:minute_old, :day_old, :week_old)
 

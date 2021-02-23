@@ -47,7 +47,9 @@ alice_publishes_to_bob:
   creator: bob
   created_at: <%= (1.week.ago. - 10.minutes).to_formatted_s(:db) %>
 
-tweet_from_8_days_ago:
+<% (8..365).each do |day| %>
+tweet_from_<%= day %>_days_ago:
   entryable: $LABEL (Tweet)
   creator: daysagobot
-  created_at: <%= 8.days.ago.to_formatted_s(:db) %>
+  created_at: <%= day.days.ago.to_formatted_s(:db) %>
+<% end %>

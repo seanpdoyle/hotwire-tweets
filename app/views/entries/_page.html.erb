@@ -1,0 +1,9 @@
+<%= render partial: "entries/entry", collection: page.records %>
+
+<% if page.before_last? %>
+  <div class="hidden last-of-type:flex justify-center my-6">
+    <%= link_to url_for(page: page.next_param, q: params[:q]), rel: "next", class: "py-2 px-4 bg-black text-white font-semibold rounded-lg shadow-md hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-opacity-75" do %>
+      Load more
+    <% end %>
+  </div>
+<% end %>
