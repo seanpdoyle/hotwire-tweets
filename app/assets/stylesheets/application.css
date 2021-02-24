@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+.last-of-type\:flex:last-of-type {
+  display: flex;
+}
