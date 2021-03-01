@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/hotwired/turbo-rails.git
-  revision: a5ab3772b11b122cd88e5c9c04f3be9b40b7f9ae
+  revision: fec33d9bc767aec612b283620d2a74e78c1f90ae
   branch: main
   specs:
     turbo-rails (0.5.9)
@@ -128,6 +128,15 @@ GIT
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
 
+GIT
+  remote: https://github.com/seanpdoyle/rails-dom-testing.git
+  revision: 44779b6161fceebe2635f7e86d4613053d8610f6
+  branch: within
+  specs:
+    rails-dom-testing (2.0.3)
+      activesupport (>= 5.0.0)
+      nokogiri (>= 1.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -185,9 +194,6 @@ GEM
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
-    rails-dom-testing (2.0.3)
-      activesupport (>= 4.2.0)
-      nokogiri (>= 1.6)
     rails-html-sanitizer (1.3.0)
       loofah (~> 2.3)
     rake (13.0.3)
@@ -252,6 +258,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails!
+  rails-dom-testing!
   redis (~> 4.0)
   sass-rails (>= 6)
   selenium-webdriver
